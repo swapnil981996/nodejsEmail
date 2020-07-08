@@ -1,17 +1,7 @@
 var express = require('express');
 var app = express();
-const http = require('http');
-
+var PORT=process.env.PORT || 4000
 app.set("view engine","jade")
-
-const hostname = 'https://emailtask.herokuapp.com';
-const port = process.env.PORT || 4000;
-
-const server = http.createServer((req, res) => {
-   res.statusCode = 200;
-   res.setHeader('Content-Type', 'text/plain');
-   res.end('hello world');
- });
 
 app.get('/send-email', function(req, res){
    console.log(req.query.toEmail)
@@ -40,8 +30,4 @@ app.get('/', function (req, res) {
 
 });
 
-// app.listen(4000);
-
-server.listen(port, hostname, () => {
-   console.log(`Server running at http://${hostname}:${port}/`);
- });
+app.listen(PORT);
