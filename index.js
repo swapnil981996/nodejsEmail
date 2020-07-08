@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-
+var port=process.env.port || 4000
 app.set("view engine","jade")
 
 app.get('/send-email', function(req, res){
@@ -30,4 +30,4 @@ app.get('/', function (req, res) {
 
 });
 
-app.listen(4000);
+app.listen(port);
