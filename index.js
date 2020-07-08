@@ -1,7 +1,17 @@
 var express = require('express');
 var app = express();
-var port=process.env.port || 4000
+const http = require('http');
+
 app.set("view engine","jade")
+
+const hostname = '127.0.0.1';
+const port = process.env.PORT || 4000;
+
+const server = http.createServer((req, res) => {
+   res.statusCode = 200;
+   res.setHeader('Content-Type', 'text/plain');
+   res.end('hello world');
+ });
 
 app.get('/send-email', function(req, res){
    console.log(req.query.toEmail)
@@ -30,4 +40,8 @@ app.get('/', function (req, res) {
 
 });
 
-app.listen(port);
+// app.listen(4000);
+
+server.listen(port, hostname, () => {
+   console.log(`Server running at http://${hostname}:${port}/`);
+ });
